@@ -13,7 +13,7 @@ This project rocks and uses MIT-LICENSE.
 
 === In Gemfile
 
-    gem 'couch_rest_adapter', git: 'https://github.com:amco/couch_rest_adapter.git'
+    gem 'couch_rest_adapter', git: 'git://github.com/amco/couch_rest_adapter.git'
 
 === Model Declaration
 
