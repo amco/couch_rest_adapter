@@ -16,6 +16,22 @@ This project rocks and uses MIT-LICENSE.
 === In Gemfile
 
     gem 'couch_rest_adapter'
+    
+=== Sample config/database.yml
+
+    defaults: &defaults
+      host: localhost
+      port: 5984
+      protocol: http
+
+    development:
+      <<: *defaults
+      name: db
+
+    test:
+      <<: *defaults
+      name: db_test
+
 
 === Model Declaration
 
@@ -29,3 +45,4 @@ This project rocks and uses MIT-LICENSE.
 * Allow setting new attributes with ```model.attribute = value```
 * More test coverage
 * Add tasks for pushing design documents
+* Add support for basic database http auth.
