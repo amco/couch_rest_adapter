@@ -13,12 +13,16 @@ This project rocks and uses MIT-LICENSE.
 
 === In Gemfile
 
-<tt>gem 'couch_rest_adapter', git: 'https://github.com:amco/couch_rest_adapter.git'
+    gem 'couch_rest_adapter', git: 'https://github.com:amco/couch_rest_adapter.git'
 
 === Model Declaration
 
-<tt>
+
   class User < CouchRestAdpater::Base
     use_default_database
   end
-</tt>
+  
+=== TODO
+
+* Allow setting new attributes with ```model.attribute = value```
+* More test coverage
