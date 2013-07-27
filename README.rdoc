@@ -33,6 +33,17 @@ This project rocks and uses MIT-LICENSE.
       name: db_test
 
 
+=== CouchViews
+
+In order for ```Model.all``` to workyou need to add a view like (code in cs):
+
+    (d) ->
+      split_id = d._id.split('/')
+      t = split_id[0]
+      emit t, d
+      
+We are planning to add a rake task that setup this view on install.
+
 === Model Declaration
 
 
