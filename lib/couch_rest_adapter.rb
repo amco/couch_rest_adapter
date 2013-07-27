@@ -4,6 +4,8 @@ require 'couch_rest_adapter/query_views'
 require 'couch_rest_adapter/document_management'
 require 'couch_rest_adapter/db_config'
 
+require File.join(File.dirname(__FILE__), '/exceptions/couch_rest_adapter')
+
 using CouchRestAdapter::Helpers
 
 module CouchRestAdapter
@@ -18,7 +20,7 @@ module CouchRestAdapter
     define_callbacks :before_save
 
     def initialize attrs = nil
-      raise CouchNotImplementedError if abstract?
+      raise NotImplementedError if abstract?
       super attrs
     end
 
@@ -55,7 +57,7 @@ module CouchRestAdapter
 
     protected
       def abstract?
-        self.class.to_s == 'CouchAdapter'
+        self.class.to_s == 'CouchRestAdapter::Base'
       end
 
       def self.model_name

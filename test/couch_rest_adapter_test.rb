@@ -48,6 +48,12 @@ class CouchRestAdapterTest < ActiveSupport::TestCase
     @foo.save
   end
 
+  test 'can not instantiate base class' do
+    assert_raise CouchRestAdapter::NotImplementedError do
+      CouchRestAdapter::Base.new
+    end
+  end
+
   test 'will add class underscorename to id' do
     assert @foo.id =~ /foo_bar/
   end
