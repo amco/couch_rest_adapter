@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.version     = CouchRestAdapter::VERSION
   s.authors     = ["Javier Guerra"]
   s.email       = ["javierg@amcoonline.net"]
-  s.homepage    = "https://github.com/amco/amcoid"
+  s.homepage    = "https://github.com/amco/couch_rest_adapter"
   s.summary     = "Simple couchrest adapter."
   s.description = "Extends couchrest document and adds simple views and document management."
 

@@ -26,3 +26,4 @@ This project rocks and uses MIT-LICENSE.
 
 * Allow setting new attributes with ```model.attribute = value```
 * More test coverage
+* Add tasks for pushing design documents
