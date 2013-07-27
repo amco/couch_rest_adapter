@@ -1,5 +1,7 @@
 = CouchRestAdapter
 
+This is a realy early version.
+
 This project rocks and uses MIT-LICENSE.
 
 == Requirements
@@ -13,7 +15,7 @@ This project rocks and uses MIT-LICENSE.
 
 === In Gemfile
 
-    gem 'couch_rest_adapter', git: 'git://github.com/amco/couch_rest_adapter.git'
+    gem 'couch_rest_adapter'
 
 === Model Declaration
 
