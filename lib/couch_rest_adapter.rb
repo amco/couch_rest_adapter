@@ -25,11 +25,11 @@ module CouchRestAdapter
     end
 
     def self.all
-      query_view('all')
+      query_view('all', default_design_doc)
     end
 
     def self.all_by_type
-      query_view('by_type')
+      query_view('by_type', default_design_doc)
     end
 
     def self.find doc_id

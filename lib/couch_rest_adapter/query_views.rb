@@ -13,8 +13,8 @@ module CouchRestAdapter
       #TODO: We can get this from Rails.application.class.name
       DEFAULT_DESIGN = 'amcoid'
 
-      def query_view name
-        doc = name.namespace_me DEFAULT_DESIGN
+      def query_view name, doc_name = nil
+        doc = name.namespace_me(DEFAULT_DESIGN || doc_name)
         view(doc, {key: model_name})['rows'].map{ |res| new res['doc'] }
       end
 
