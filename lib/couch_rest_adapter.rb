@@ -23,10 +23,8 @@ module CouchRestAdapter
     #TODO: add custom callback calls.
     define_model_callbacks :save
 
-    #TODO set_id and set_type should not be callbacks. Need a 
-    # better way to do this, possibilty using class methods
+    #TODO set_id not be a callback. Need a better way to do this, possibilty using class methods
     before_save :set_id
-    before_save :set_type
 
     def initialize attributes = {}
       @attributes = attributes
@@ -84,10 +82,5 @@ module CouchRestAdapter
       def set_id
         self['_id'] = next_id if self['_id'].blank?
       end
-
-      def set_type
-        self['type'] = self.class.to_s
-      end
-
   end
 end
