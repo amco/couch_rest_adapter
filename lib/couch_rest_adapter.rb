@@ -10,11 +10,15 @@ using CouchRestAdapter::Helpers
 
 module CouchRestAdapter
   class Base < CouchRest::Document
+    extend ActiveModel::Naming
+    include ActiveModel::Validations
+    include ActiveModel::Conversion
     include ActiveSupport::Callbacks
     include AttributeMethod
-    include QueryViews
+    include DbConfig
     include DocumentManagement
     include DbConfig
+    include QueryViews
 
     #TODO: add custom callback calls.
     define_callbacks :before_save
