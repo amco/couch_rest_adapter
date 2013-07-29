@@ -29,7 +29,7 @@ module CouchRestAdapter
 
     def initialize attributes = {}
       @attributes = attributes
-      raise CouchRest::CouchAdapterError::NotImplementedError if abstract?
+      raise NotImplementedError if abstract?
       super attributes
     end
 
