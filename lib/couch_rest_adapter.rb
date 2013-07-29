@@ -42,7 +42,7 @@ module CouchRestAdapter
     end
 
     def self.find doc_id
-      new database.get( doc_id.namespace_me(model_name) ).to_hash
+      new database.get( doc_id.namespace_me(model) ).to_hash
     end
 
     def self.use_default_database
