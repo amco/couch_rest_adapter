@@ -21,11 +21,17 @@ module CouchRestAdapter
     include QueryViews
 
     #TODO: add custom callback calls.
-    define_callbacks :before_save
+    define_model_callbacks :save
 
-    def initialize attrs = nil
-      raise NotImplementedError if abstract?
-      super attrs
+    #TODO set_id and set_type should not be callbacks. Need a 
+    # better way to do this, possibilty using class methods
+    before_save :set_id
+    before_save :set_type
+
+    def initialize attributes = {}
+      @attributes = attributes
+      raise CouchRest::CouchAdapterError::NotImplementedError if abstract?
+      super attributes
     end
 
     def self.all
@@ -45,10 +51,9 @@ module CouchRestAdapter
     end
 
     def save
-      run_callbacks :before_save do
-        self['_id'] = next_id if self['_id'].blank?
-        super
-      end
+      return false if invalid?
+      return false unless run_callbacks(:save)
+      super
     end
 
     def method_missing method, *args, &block
@@ -59,13 +64,29 @@ module CouchRestAdapter
       end
     end
 
+    def persisted?
+      true
+    end
+
+    def read_attribute_for_validation(key)
+      @attributes[key]
+    end
+
     protected
       def abstract?
         self.class.to_s == 'CouchRestAdapter::Base'
       end
 
-      def self.model_name
-        name.underscore
+      def self.model
+        self.model_name.singular
+      end
+
+      def set_id
+        self['_id'] = next_id if self['_id'].blank?
+      end
+
+      def set_type
+        self['type'] = self.class.to_s
       end
 
   end
