@@ -1,3 +1,4 @@
+require 'active_model'
 require 'couchrest'
 require 'couch_rest_adapter/attribute_method'
 require 'couch_rest_adapter/query_views'
