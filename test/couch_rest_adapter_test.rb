@@ -98,3 +98,10 @@ class CouchRestAdapterTest < ActiveSupport::TestCase
 
 end
 
+class LintTest < ActiveModel::TestCase
+  include ActiveModel::Lint::Tests
+
+  def setup
+    @model = FooBar.new
+  end
+end
