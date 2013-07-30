@@ -1,5 +1,7 @@
 = CouchRestAdapter
 
+This is a realy early version.
+
 This project rocks and uses MIT-LICENSE.
 
 == Requirements
@@ -13,7 +15,34 @@ This project rocks and uses MIT-LICENSE.
 
 === In Gemfile
 
-    gem 'couch_rest_adapter', git: 'git://github.com/amco/couch_rest_adapter.git'
+    gem 'couch_rest_adapter'
+    
+=== Sample config/database.yml
+
+    defaults: &defaults
+      host: localhost
+      port: 5984
+      protocol: http
+
+    development:
+      <<: *defaults
+      name: db
+
+    test:
+      <<: *defaults
+      name: db_test
+
+
+=== CouchViews
+
+In order for ```Model.all``` to workyou need to add a view like (code in cs):
+
+    (d) ->
+      split_id = d._id.split('/')
+      t = split_id[0]
+      emit t, d
+      
+We are planning to add a rake task that setup this view on install.
 
 === Model Declaration
 
@@ -27,3 +56,4 @@ This project rocks and uses MIT-LICENSE.
 * Allow setting new attributes with ```model.attribute = value```
 * More test coverage
 * Add tasks for pushing design documents
+* Add support for basic database http auth.

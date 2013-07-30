@@ -14,8 +14,8 @@ module CouchRestAdapter
       DEFAULT_DESIGN = 'amcoid'
 
       def query_view name, doc_name = nil
-        doc = name.namespace_me(DEFAULT_DESIGN || doc_name)
-        view(doc, {key: model_name})['rows'].map{ |res| new res['doc'] }
+        doc = name.namespace_me(doc_name || DEFAULT_DESIGN)
+        view(doc, {key: object_name})['rows'].map{ |res| new res['doc'] }
       end
 
       #TODO: method for reduce, and filters
