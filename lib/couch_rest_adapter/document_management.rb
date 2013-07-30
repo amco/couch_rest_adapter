@@ -3,7 +3,7 @@ module CouchRestAdapter
     UUID_DOC = '_uuids/?'
 
     def next_id
-      File.join self.class.model, uuids.first
+      File.join self.class.object_name, uuids.first
     end
 
     def uuids opts = {}

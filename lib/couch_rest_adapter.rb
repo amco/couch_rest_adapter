@@ -42,7 +42,7 @@ module CouchRestAdapter
     end
 
     def self.find doc_id
-      new database.get( doc_id.namespace_me(model) ).to_hash
+      new database.get( doc_id.namespace_me(object_name) ).to_hash
     end
 
     def self.use_default_database
@@ -76,7 +76,7 @@ module CouchRestAdapter
         self.class.to_s == 'CouchRestAdapter::Base'
       end
 
-      def self.model
+      def self.object_name
         self.model_name.singular
       end
 
