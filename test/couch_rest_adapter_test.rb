@@ -44,6 +44,8 @@ class CouchRestAdapterTest < ActiveSupport::TestCase
 
     FakeWeb.register_uri :get, %r|http://.*:5984/test/_design/.*/_view/by_type.*key=%22foo_bar%22|, body: view_by_type_resp.to_json
 
+    FakeWeb.register_uri :get, %r|http://.*:5984/test/_design/.*/_view/by_attribute.*key=%5B%22foo_bar%22%2C%22foo%22%2C%22Foo%22%5D|, body: view_by_type_resp.to_json
+
     @foo = FooBar.new foo: 'Foo', bar: 'Bar'
     @foo.save
   end
@@ -83,6 +85,16 @@ class CouchRestAdapterTest < ActiveSupport::TestCase
     bar = FooBar.new foo: 'Bar', bar: 'Foo', type: 'foo_bar'
     bar.save
     bars = FooBar.all_by_type
+    bars.each do |doc|
+      assert doc.kind_of?(FooBar)
+      assert_equal 'foo_bar', doc.type
+    end
+  end
+
+  test 'find_by_attr will return array of docs with type set to model name' do
+    bar = FooBar.new foo: 'Bar', bar: 'Foo', type: 'foo_bar'
+    bar.save
+    bars = FooBar.find_by_foo 'Foo'
     bars.each do |doc|
       assert doc.kind_of?(FooBar)
       assert_equal 'foo_bar', doc.type
