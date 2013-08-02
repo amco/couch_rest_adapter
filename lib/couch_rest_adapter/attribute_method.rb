@@ -17,7 +17,6 @@ module CouchRestAdapter
       singleton_class.class_eval do
         define_method(method_name) do |v|
           self[base_method_name] = v
-          @attributes[base_method_name] = v
         end
       end
       send(method_name, value)
