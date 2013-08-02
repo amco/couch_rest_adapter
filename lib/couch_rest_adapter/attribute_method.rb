@@ -15,9 +15,7 @@ module CouchRestAdapter
     def write_value method_name, value
       base_method_name = method_without_equals(method_name)
       singleton_class.class_eval do
-        define_method(method_name) do |v|
-          self[base_method_name] = v
-        end
+        define_method(method_name) { |v| self[base_method_name] = v }
       end
       send(method_name, value)
     end
