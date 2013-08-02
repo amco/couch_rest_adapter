@@ -30,7 +30,6 @@ module CouchRestAdapter
     before_save :set_id
 
     def initialize attributes = {}
-      @attributes = attributes
       raise NotImplementedError if abstract?
       super attributes
     end
@@ -82,7 +81,7 @@ module CouchRestAdapter
     end
 
     def read_attribute_for_validation(key)
-      @attributes[key]
+      self[key.to_s]
     end
 
     protected
