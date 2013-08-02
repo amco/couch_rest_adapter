@@ -11,6 +11,8 @@ using CouchRestAdapter::Helpers
 
 module CouchRestAdapter
   class Base < CouchRest::Document
+    #TODO: As abstract class should not have any method definition
+
     extend ActiveModel::Naming
     include ActiveModel::Validations
     include ActiveModel::Conversion
@@ -47,6 +49,18 @@ module CouchRestAdapter
 
     def self.use_default_database
       use_database CouchRest.database(full_path)
+    end
+
+    def self.respond_to? method
+      (method.to_s =~ /^find_by_.*$/) ? true : super
+    end
+
+    def self.method_missing method, *args, &block
+      if method.to_s =~ /^find_by_(.+)$/
+        find_by_attribute($1, args.first)
+      else
+        super
+      end
     end
 
     def save

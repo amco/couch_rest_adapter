@@ -35,13 +35,21 @@ This project rocks and uses MIT-LICENSE.
 
 === CouchViews
 
-In order for ```Model.all``` to workyou need to add a view like (code in cs):
+In order for ```Model.all``` to workyou need to add a view like (code in cs), named 'all':
 
     (d) ->
       split_id = d._id.split('/')
       t = split_id[0]
       emit t, d
       
+For 'Model.find_by_attr' to work, you will need this view named like 'by_attribute':
+
+    (doc) ->
+      type = doc._id.split('/')[0]
+      for a of doc
+        emit([type, a, doc[a]], doc._id)
+
+
 We are planning to add a rake task that setup this view on install.
 
 === Model Declaration
