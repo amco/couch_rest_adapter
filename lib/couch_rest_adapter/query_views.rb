@@ -11,7 +11,7 @@ module CouchRestAdapter
 
     module ClassMethods
       
-      DEFAULT_DESIGN = Rails.application.class.to_s.split("::").first
+      DEFAULT_DESIGN = Rails.application.class.to_s.split("::").first.downcase
 
       def find_by_attribute attr_name, value, doc_name = nil
         document_name = 'by_attribute'
