@@ -1,5 +1,6 @@
 using CouchRestAdapter::Helpers
 
+#TODO write some tests for this module
 module CouchRestAdapter
   module DocumentManagement
     module ClassMethods
