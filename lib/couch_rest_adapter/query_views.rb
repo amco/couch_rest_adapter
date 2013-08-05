@@ -10,8 +10,8 @@ module CouchRestAdapter
     end
 
     module ClassMethods
-      #TODO: We can get this from Rails.application.class.name
-      DEFAULT_DESIGN = 'amcoid'
+      
+      DEFAULT_DESIGN = Rails.application.class.to_s.split("::").first.downcase
 
       def find_by_attribute attr_name, value, doc_name = nil
         document_name = 'by_attribute'
