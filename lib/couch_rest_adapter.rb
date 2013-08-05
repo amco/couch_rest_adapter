@@ -62,7 +62,7 @@ module CouchRestAdapter
     def save
       return false if invalid?
       return false unless run_callbacks(:save)
-      set_id
+      _set_id_and_namespace
       super
     end
 

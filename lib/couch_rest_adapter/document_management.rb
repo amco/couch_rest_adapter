@@ -22,8 +22,9 @@ module CouchRestAdapter
 
     UUID_DOC = '_uuids/?'
 
-    def next_id
-      File.join self.class.object_name, uuids.first
+    #override this method if you want to set your own id
+    def set_id
+      uuids.first
     end
 
     def uuids opts = {}
@@ -36,9 +37,13 @@ module CouchRestAdapter
       CGI.unescape(opts.to_query)
     end
 
-    def set_id
-      self['_id'] = next_id if self['_id'].blank?
+    def _set_id_and_namespace
+      self['_id'] = set_id if self['_id'].blank?
       self['_id'] = self['_id'].namespace_me self.class.namespace
+    end
+
+    def base_id
+      self['_id'].gsub "#{self.class.namespace}/", ''
     end
   end
 end
