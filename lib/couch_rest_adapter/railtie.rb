@@ -1,9 +1,12 @@
+require 'couch_rest_adapter'
+require 'rails'
+
 module CouchRestAdapter
   class Railtie < Rails::Railtie
-    initializer "Include your code in the controller" do
-      ActiveSupport.on_load(:action_controller) do
-        include CouchRestAdapter
-      end
+    railtie_name :couch_rest_adapter
+
+    rake_tasks do
+      load 'tasks/couch_rest_adapter_tasks.rake'
     end
   end
 end
