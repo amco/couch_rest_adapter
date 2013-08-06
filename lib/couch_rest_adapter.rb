@@ -26,9 +26,6 @@ module CouchRestAdapter
     #TODO: add custom callback calls.
     define_model_callbacks :save
 
-    #TODO set_id not be a callback. Need a better way to do this, possibilty using class methods
-    before_save :set_id
-
     def initialize attributes = {}
       raise NotImplementedError if abstract?
       super attributes
@@ -65,6 +62,7 @@ module CouchRestAdapter
     def save
       return false if invalid?
       return false unless run_callbacks(:save)
+      _set_id_and_namespace
       super
     end
 
@@ -87,14 +85,6 @@ module CouchRestAdapter
     protected
       def abstract?
         self.class.to_s == 'CouchRestAdapter::Base'
-      end
-
-      def self.object_name
-        self.model_name.singular
-      end
-
-      def set_id
-        self['_id'] = next_id if self['_id'].blank?
       end
   end
 end
