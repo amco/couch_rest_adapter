@@ -27,7 +27,7 @@ namespace :db do
 
 
     task :config do
-      BaseModel.save_doc view_doc
+      BaseModel.database.save_doc view_doc
     end
 
     task design: :environment do
