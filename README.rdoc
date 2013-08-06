@@ -22,6 +22,8 @@ so you should create your reails project without AR, as in <tt>rails new my_app 
     
 === Sample config/database.yml
 
+All this are required attributes.
+
     defaults: &defaults
       host: localhost
       port: 5984
