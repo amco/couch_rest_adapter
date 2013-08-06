@@ -61,7 +61,20 @@ with the next structure:
     }
 
 
-We are planning to add a rake task that setup this view on install.
+You can add more views as needed into ```db/designs/``` folder.
+
+This is how the designs are delcared:
+
+    db
+      designs
+        my_map_name.map.coffee
+        my_filter_name.filter.coffee
+        my_reduce_name.reduce.coffee
+
+Then if you run ```rake db:push:design``` the ```_design/my_app`` document will be updated.
+The views need to be written on coffeescript code.
+
+One thing: this will allow you to add tests to your couch views ;-)
 
 === Model Declaration
 
