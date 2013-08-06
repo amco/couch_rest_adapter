@@ -55,7 +55,7 @@ module CouchRestAdapter
 
     def self.method_missing method, *args, &block
       if method.to_s =~ /^find_by_(.+)$/
-        find_by_attribute($1, args.first)
+        find_by_attribute($1, args.first, default_design_doc)
       else
         super
       end

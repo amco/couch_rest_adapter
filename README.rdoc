@@ -19,6 +19,8 @@ This project rocks and uses MIT-LICENSE.
     
 === Sample config/database.yml
 
+All this are required attributes.
+
     defaults: &defaults
       host: localhost
       port: 5984
