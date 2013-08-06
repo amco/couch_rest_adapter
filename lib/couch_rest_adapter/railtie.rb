@@ -6,7 +6,7 @@ module CouchRestAdapter
     railtie_name :couch_rest_adapter
 
     rake_tasks do
-      load 'lib/tasks/couch_rest_adapter_tasks.rake'
+      load File.join File.dirname(__FILE__), '../tasks/couch_rest_adapter_tasks.rake'
     end
   end
 end
