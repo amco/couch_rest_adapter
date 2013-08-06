@@ -13,6 +13,9 @@ This project rocks and uses MIT-LICENSE.
 
 == Instalation
 
+Right now there will be a conflict if you use it as it is mixed with ActoveRecord,
+so you should create your reails project without AR, as in ```rails new my_app -O```
+
 === In Gemfile
 
     gem 'couch_rest_adapter'
