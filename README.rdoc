@@ -23,6 +23,7 @@ This project rocks and uses MIT-LICENSE.
       host: localhost
       port: 5984
       protocol: http
+      design_doc: my_app
 
     development:
       <<: *defaults
@@ -35,19 +36,26 @@ This project rocks and uses MIT-LICENSE.
 
 === CouchViews
 
-In order for ```Model.all``` to workyou need to add a view like (code in cs), named 'all':
+After installing the gem you should run ```rake db:push:config```
+this will setup a design document called as the database.yml ```design_doc``` value
+with the next structure:
 
-    (d) ->
-      split_id = d._id.split('/')
-      t = split_id[0]
-      emit t, d
-      
-For 'Model.find_by_attr' to work, you will need this view named like 'by_attribute':
-
-    (doc) ->
-      type = doc._id.split('/')[0]
-      for a of doc
-        emit([type, a, doc[a]], doc._id)
+    {
+       "_id": "_design/my_app",
+       "language": "coffeescript",
+       "views": {
+           "all": {
+               "map": "(d) ->\n  split_id = d._id.split('/')\n  t = split_id[0]\n  emit t, d\n",
+               "reduce": "# This is only for demosntration one can use the built in count\n(keys, values, rereduce)->\n  if rereduce\n    sum(values)\n  else\n    values.length\n"
+           },
+           "by_attribute": {
+               "map": "(doc) ->\n  type = doc._id.split('/')[0]\n  for a of doc\n    emit([type, a, doc[a]], doc._id)\n"
+           },
+           "by_type": {
+               "map": "(d)->\n  emit d.type.toLowerCase(), d._id if d.type\n"
+           },
+       }
+    }
 
 
 We are planning to add a rake task that setup this view on install.
