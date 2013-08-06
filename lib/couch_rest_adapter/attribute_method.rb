@@ -32,6 +32,9 @@ module CouchRestAdapter
       _attributes.keys.map{ |attr| [attr, "#{attr}="] }.flatten
     end
 
+    def base_id
+      File.basename self['_id']
+    end
   end
 end
 
