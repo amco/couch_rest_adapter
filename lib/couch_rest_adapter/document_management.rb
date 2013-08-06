@@ -44,7 +44,7 @@ module CouchRestAdapter
     end
 
     def base_id
-      self['_id'].gsub "#{self.class.namespace}/", ''
+      File.basename self['_id']
     end
   end
 end
