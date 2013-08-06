@@ -43,9 +43,6 @@ module CouchRestAdapter
       self['_id'] = self['_id'].namespace_me self.class.namespace
     end
 
-    def base_id
-      File.basename self['_id']
-    end
   end
 end
 
