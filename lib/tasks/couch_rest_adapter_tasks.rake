@@ -10,7 +10,6 @@ namespace :db do
     end
 
     view_doc = {
-      _id: "_design/#{BaseModel.default_design_doc}",
       language: "coffeescript",
       views: {
         all: {
@@ -27,7 +26,9 @@ namespace :db do
 
 
     task :config do
-      BaseModel.database.save_doc view_doc
+      doc_id = "_design/#{BaseModel.default_design_doc}"
+      BaseModel.database.save_doc view_doc.merge( "_id" => doc_id )
+      puts "Design document #{doc_id} added."
     end
 
     task design: :environment do

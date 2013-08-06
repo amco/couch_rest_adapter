@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    couch_rest_adapter (0.4.4)
+    couch_rest_adapter (0.4.5)
       couchrest (~> 1.1.3)
       rails (~> 4.0.0)
 
