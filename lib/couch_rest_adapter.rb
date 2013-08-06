@@ -10,7 +10,7 @@ require File.join(File.dirname(__FILE__), '/exceptions/couch_rest_adapter')
 using CouchRestAdapter::Helpers
 
 module CouchRestAdapter
-  autoload :Railtie, 'couch_rest_adapter/railtie'
+  autoload :Railtie, File.join( File.dirname(__FILE__), 'couch_rest_adapter', 'railtie')
 
   class Base < CouchRest::Document
     #TODO: As abstract class should not have any method definition
