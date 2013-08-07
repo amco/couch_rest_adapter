@@ -5,10 +5,6 @@
 namespace :db do
 
   namespace :push do
-    class BaseModel < CouchRestAdapter::Base
-      use_default_database
-    end
-
     view_doc = {
       language: "coffeescript",
       views: {
@@ -24,9 +20,14 @@ namespace :db do
       }
     }
 
-
     desc "Will save the default design document."
     task :config do
+      # TODO: DRY this methods, the need to have config yml file loaded prevent us to
+      # add this on the namespace. Autoload didn;t work as expected.
+      class BaseModel < CouchRestAdapter::Base
+        use_default_database
+      end
+
       doc_id = "_design/#{BaseModel.default_design_doc}"
       BaseModel.database.save_doc view_doc.merge( "_id" => doc_id )
       puts "Design document #{doc_id} added."
@@ -34,6 +35,10 @@ namespace :db do
 
     "Will update design document with what is on db/designs/*.coffee"
     task design: :environment do
+      class BaseModel < CouchRestAdapter::Base
+        use_default_database
+      end
+
       path = File.join Rails.root, 'db', 'designs'
       files = Dir.glob("**/*.coffee")
       views = {}
