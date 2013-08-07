@@ -33,7 +33,7 @@ namespace :db do
       puts "Design document #{doc_id} added."
     end
 
-    "Will update design document with what is on db/designs/*.coffee"
+    desc "Will update design document with what is on db/designs/*.coffee"
     task design: :environment do
       class BaseModel < CouchRestAdapter::Base
         use_default_database
