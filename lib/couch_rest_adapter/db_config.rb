@@ -21,7 +21,7 @@ module CouchRestAdapter
       end
 
       def config_file
-        root = Rails.env == 'test' ? File.expand_path("../../../test/dummy/",  __FILE__) : Rails.root
+        root = Rails.root || File.expand_path("../../../test/dummy/",  __FILE__)
         File.join(root, 'config', 'database.yml')
       end
 
