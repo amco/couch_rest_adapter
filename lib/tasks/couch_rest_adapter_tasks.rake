@@ -25,12 +25,14 @@ namespace :db do
     }
 
 
+    desc "Will save the default design document."
     task :config do
       doc_id = "_design/#{BaseModel.default_design_doc}"
       BaseModel.database.save_doc view_doc.merge( "_id" => doc_id )
       puts "Design document #{doc_id} added."
     end
 
+    "Will update design document with what is on db/designs/*.coffee"
     task design: :environment do
       path = File.join Rails.root, 'db', 'designs'
       files = Dir.glob("**/*.coffee")
