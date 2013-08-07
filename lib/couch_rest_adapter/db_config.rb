@@ -22,7 +22,7 @@ module CouchRestAdapter
 
       def config_file
         root = Rails.env == 'test' ? File.expand_path("../../../test/dummy/",  __FILE__) : Rails.root
-        File.join(root, 'config', 'database.yml')
+        File.join(root, 'config', 'couchdb.yml')
       end
 
       def default_design_doc
