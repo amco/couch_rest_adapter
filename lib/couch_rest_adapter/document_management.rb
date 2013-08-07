@@ -5,11 +5,11 @@ module CouchRestAdapter
   module DocumentManagement
     module ClassMethods
       def namespace=(namespace)
-        @@_namespace = namespace
+        @_namespace = namespace
       end
 
       def namespace
-        @@_namespace ||= object_name
+        @_namespace ||= object_name
       end
 
       def object_name
