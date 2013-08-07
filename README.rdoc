@@ -19,8 +19,8 @@ so you should create your reails project without AR, as in <tt>rails new my_app 
 === In Gemfile
 
     gem 'couch_rest_adapter'
-    
-=== Sample config/database.yml
+
+=== Sample config/couchdb.yml
 
 All this are required attributes.
 
