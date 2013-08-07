@@ -8,7 +8,7 @@ module CouchRestAdapter
       attr_accessor :config_file
 
       def parse_config
-        YAML::load File.open config_file
+        YAML::load( ERB.new( File.read(config_file) ).result)
       end
 
       def base_path
