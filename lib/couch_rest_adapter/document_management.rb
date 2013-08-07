@@ -13,7 +13,7 @@ module CouchRestAdapter
       end
 
       def object_name
-        model_name.singular
+        model_name.element
       end
     end
 
