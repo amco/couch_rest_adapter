@@ -70,6 +70,8 @@ module CouchRestAdapter
     def method_missing method, *args, &block
       if attribute_methods.include? method.to_s
         read_write method, args.first
+      elsif method.to_s =~ /^(.+)=$/
+        read_write method, args.first
       else
         super
       end

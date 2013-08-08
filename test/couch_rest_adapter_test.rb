@@ -65,6 +65,11 @@ class CouchRestAdapterTest < ActiveSupport::TestCase
     assert_equal 'Foo', @foo.foo
   end
 
+  test 'attributes can be set dynamically' do
+    assert @foo.other = 'other'
+    assert_equal 'other', @foo['other']
+  end
+
   test 'one can update existing attributes' do
     @foo.foo = 'more'
     assert_equal 'more', @foo[:foo]
