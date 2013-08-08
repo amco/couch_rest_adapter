@@ -1,3 +1,4 @@
+require 'json/ext'
 require 'active_model'
 require 'couchrest'
 require 'couch_rest_adapter/attribute_method'
@@ -7,6 +8,8 @@ require 'couch_rest_adapter/db_config'
 require 'couch_rest_adapter/railtie' if defined?(Rails)
 
 require File.join(File.dirname(__FILE__), '/exceptions/couch_rest_adapter')
+
+require 'couch_rest_adapter/api'
 
 using CouchRestAdapter::Helpers
 

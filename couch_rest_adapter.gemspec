@@ -18,6 +18,7 @@ Gem::Specification.new do |s|
   s.test_files = Dir["test/**/*"]
 
   s.add_dependency "rails", "~> 4.0.0"
+  s.add_dependency "json"
   s.add_dependency "couchrest", "~> 1.1.3"
 
   s.add_development_dependency "fakeweb", "~> 1.3.0"

@@ -27,7 +27,7 @@ class CouchRestAdapterTest < ActiveSupport::TestCase
       ]
     }
 
-    view_resp = {
+    @view_resp = {
       total_rows:579,
       offset:0,
       rows:[
@@ -40,7 +40,7 @@ class CouchRestAdapterTest < ActiveSupport::TestCase
       ]
     }
 
-    FakeWeb.register_uri :get, %r|http://.*:5984/test/_design/.*/_view/all.*key=%22foo_bar%22|, body: view_resp.to_json
+    FakeWeb.register_uri :get, %r|http://.*:5984/test/_design/.*/_view/all.*key=%22foo_bar%22|, body: @view_resp.to_json
 
     FakeWeb.register_uri :get, %r|http://.*:5984/test/_design/.*/_view/by_type.*key=%22foo_bar%22|, body: view_by_type_resp.to_json
 
@@ -79,6 +79,12 @@ class CouchRestAdapterTest < ActiveSupport::TestCase
     foos.each do |f|
       assert f.kind_of?(FooBar)
     end
+  end
+
+  test 'query all will execute JSON.parse' do
+    expected_res = JSON.parse(@view_resp.to_json)
+    JSON.expects(:parse).once.returns( expected_res )
+    foos = FooBar.all
   end
 
   test 'query all_by_type will return array of docs with type set to model name' do
