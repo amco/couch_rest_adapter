@@ -9,7 +9,7 @@ namespace :db do
       language: "coffeescript",
       views: {
         all: {
-          map: "(d) ->\n  split_id = d._id.split('/')\n  t = split_id[0]\n  emit t, d\n",
+          map: "(d) ->\n  split_id = d._id.split('/')\n  t = split_id[0]\n  emit t, d._id\n",
         },
         by_attribute: {
           map: "(doc) ->\n  type = doc._id.split('/')[0]\n  for a of doc\n    emit([type, a, doc[a]], doc._id)\n"
