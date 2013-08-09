@@ -111,8 +111,23 @@ class CouchRestAdapterTest < ActiveSupport::TestCase
     assert_equal @foo, FooBar.find(partial_id)
   end
 
+  test 'save! will run validations' do
+    invalid =  WithValidations.new no_foo: 'a'
+    assert_raise CouchRestAdapter::InvalidDocument do
+      invalid.save!
+    end
+    valid =  WithValidations.new foo: 'a'
+    assert valid.save!
+  end
+
   #TODO: Error handling, reporting
 
+end
+
+class WithValidations < CouchRestAdapter::Base
+  use_default_database
+
+  validates :foo, presence: true
 end
 
 class LintTest < ActiveModel::TestCase

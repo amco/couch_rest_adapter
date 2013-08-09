@@ -67,6 +67,11 @@ module CouchRestAdapter
       super
     end
 
+    def save!
+      raise CouchRestAdapter::InvalidDocument if invalid?
+      save
+    end
+
     def method_missing method, *args, &block
       if attribute_methods.include? method.to_s
         read_write method, args.first

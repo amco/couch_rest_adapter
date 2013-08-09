@@ -4,5 +4,11 @@ module CouchRestAdapter
       "An abstract class can not be instantiated."
     end
   end
+
+  class InvalidDocument < RuntimeError
+    def to_s
+      "Document Can't be saved. Validation Failed."
+    end
+  end
 end
 
