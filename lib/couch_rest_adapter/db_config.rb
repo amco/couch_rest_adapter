@@ -11,9 +11,14 @@ module CouchRestAdapter
         YAML::load( ERB.new( File.read(config_file) ).result)
       end
 
+      def auth_info parts
+          return "" unless parts['username'].present?
+          "#{parts['username']}:#{parts['password']}@"
+      end
+
       def base_path
         parts = parse_config[Rails.env]
-        "#{parts['protocol']}://#{parts['host']}:#{parts['port']}"
+        "#{parts['protocol']}://#{auth_info parts}#{parts['host']}:#{parts['port']}"
       end
 
       def full_path
