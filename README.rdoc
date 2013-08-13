@@ -29,6 +29,9 @@ All this are required attributes.
       port: 5984
       protocol: http
       design_doc: my_app
+      # optional
+      # username: username
+      # password: password
 
     development:
       <<: *defaults
@@ -38,6 +41,7 @@ All this are required attributes.
       <<: *defaults
       name: db_test
 
+Versions > 0.8.0 support https protocol, s
 
 === CouchViews
 
@@ -90,4 +94,3 @@ One thing: this will allow you to add tests to your couch views ;-)
 * Allow setting new attributes with ```model.attribute = value```
 * More test coverage
 * Add tasks for pushing design documents
-* Add support for basic database http auth.
