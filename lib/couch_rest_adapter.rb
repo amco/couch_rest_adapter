@@ -60,16 +60,16 @@ module CouchRestAdapter
       end
     end
 
-    def save
+    def save bulk = false
       return false if invalid?
       return false unless run_callbacks(:save)
       _set_id_and_namespace
-      super
+      super bulk
     end
 
-    def save!
+    def save! bulk = false
       raise CouchRestAdapter::InvalidDocument if invalid?
-      save
+      save bulk
     end
 
     def method_missing method, *args, &block
