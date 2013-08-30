@@ -106,6 +106,14 @@ class CouchRestAdapterTest < ActiveSupport::TestCase
     end
   end
 
+  test 'calling view with raw as false will build objects' do
+    foos = FooBar.view 'app/by_attribute', {key: ["foo_bar", "foo", "Foo"]}, false
+    foos.each do |f|
+      assert_equal 'Foo', f.foo
+      assert f.kind_of?(FooBar)
+    end
+  end
+
   test 'find will work with partial id' do
     partial_id = @foo.id.sub(/foo\//,'')
     assert_equal @foo, FooBar.find(partial_id)
