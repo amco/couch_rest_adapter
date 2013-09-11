@@ -26,8 +26,14 @@ module CouchRestAdapter
         view(doc, {key: key})['rows'].map{ |res| new res['doc'] }
       end
 
+      def view doc, attrs, raw = true
+        results = raw_view doc, attrs
+        return results if raw
+        results['rows'].map{ |row| new row['doc']}
+      end
+
       #TODO: method for reduce, and filters
-      def view doc, attrs, reduce = false
+      def raw_view doc, attrs, reduce = false
         database.view(doc, {reduce: reduce, include_docs: true}.merge!(attrs) )
       end
     end
